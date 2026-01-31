@@ -21,7 +21,7 @@ class LatestNewsResource extends Resource
 {
     protected static ?string $model = LatestNews::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?string $recordTitleAttribute = 'LatestNews';
     protected static string|UnitEnum|null $navigationGroup = 'Latest News';

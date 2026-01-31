@@ -21,7 +21,7 @@ class PreferredContactMethodResource extends Resource
 {
     protected static ?string $model = PreferredContactMethod::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-phone';
 
     protected static ?string $recordTitleAttribute = 'PreferredContactMethod';
     protected static string|UnitEnum|null $navigationGroup = 'Quote Request';

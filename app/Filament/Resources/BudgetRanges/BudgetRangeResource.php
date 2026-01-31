@@ -21,7 +21,7 @@ class BudgetRangeResource extends Resource
 {
     protected static ?string $model = BudgetRange::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-currency-dollar';
 
     protected static ?string $recordTitleAttribute = 'BudgetRange';
     protected static string|UnitEnum|null $navigationGroup = 'Quote Request';

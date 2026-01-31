@@ -21,7 +21,7 @@ class PropertyTypeResource extends Resource
 {
     protected static ?string $model = PropertyType::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home';
 
     protected static ?string $recordTitleAttribute = 'PropertyType';
     protected static string|UnitEnum|null $navigationGroup = 'Service';

@@ -21,7 +21,7 @@ class PreferredTimeResource extends Resource
 {
     protected static ?string $model = PreferredTime::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clock';
 
     protected static ?string $recordTitleAttribute = 'PreferredTime';
     protected static string|UnitEnum|null $navigationGroup = 'Site Visit';

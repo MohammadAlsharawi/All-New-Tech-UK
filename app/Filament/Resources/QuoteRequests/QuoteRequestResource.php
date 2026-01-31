@@ -21,7 +21,7 @@ class QuoteRequestResource extends Resource
 {
     protected static ?string $model = QuoteRequest::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $recordTitleAttribute = 'QuoteRequest';
     protected static string|UnitEnum|null $navigationGroup = 'Quote Request';
