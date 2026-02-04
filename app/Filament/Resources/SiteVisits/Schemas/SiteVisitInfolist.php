@@ -18,15 +18,22 @@ class SiteVisitInfolist
                     ->label('Email address'),
                 TextEntry::make('phone'),
                 TextEntry::make('post_code'),
-                TextEntry::make('property_type_id')
-                    ->numeric(),
                 TextEntry::make('address'),
-                TextEntry::make('service_id')
-                    ->numeric(),
+                TextEntry::make('propertyType.name')
+                    ->label('Property Type')
+                    ->placeholder('-'),
+
+                TextEntry::make('service.title')
+                    ->label('Service')
+                    ->placeholder('-'),
+
+                TextEntry::make('preferredTime.time')
+                    ->label('Preferred Time')
+                    ->placeholder('-'),
+
                 TextEntry::make('preferred_date')
                     ->date(),
-                TextEntry::make('preferred_time_id')
-                    ->numeric(),
+                TextEntry::make('notes'),
                 IconEntry::make('confirmation')
                     ->boolean(),
                 TextEntry::make('created_at')

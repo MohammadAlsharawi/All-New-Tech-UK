@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\QuoteRequests\Schemas;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -26,23 +28,53 @@ class QuoteRequestForm
                     ->required(),
                 TextInput::make('post_code')
                     ->required(),
-                TextInput::make('property_type_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('service_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('property_type_id')
+                    ->label('Property Type')
+                    ->relationship('propertyType', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->reactive()
+                    ->required(),
+
+                Select::make('service_id')
+                    ->label('Service')
+                    ->options(function (callable $get) {
+                        $propertyTypeId = $get('property_type_id');
+
+                        if (! $propertyTypeId) {
+                            return [];
+                        }
+
+                        return \App\Models\Service::where('property_type_id', $propertyTypeId)
+                            ->pluck('title', 'id');
+                    })
+                    ->searchable()
+                    ->required(),
+
+                Select::make('preferred_contact_method_id')
+                    ->label('Preferred Contact Method')
+                    ->relationship('preferredContactMethod', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+
                 Textarea::make('requirements')
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('preferred_contact_method_id')
+                Select::make('budget_range_id')
+                    ->label('Budget Range')
+                    ->relationship('budgetRange', 'range')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+
+                FileUpload::make('file')
+                    ->disk('public')
+                    ->directory('Quote_files')
+                    ->acceptedFileTypes(['application/pdf'])
                     ->required()
-                    ->numeric(),
-                TextInput::make('budget_range_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('file')
-                    ->default(null),
+                    ->downloadable()
+                    ->openable(),
                 Toggle::make('confirmation')
                     ->required(),
             ]);

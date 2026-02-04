@@ -12,8 +12,12 @@ class LatestNewsInfolist
     {
         return $schema
             ->components([
-                ImageEntry::make('image'),
+                ImageEntry::make('image')
+                ->square()
+                ->size(300)
+                ->disk('public'),
                 TextEntry::make('title'),
+                TextEntry::make('content'),
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

@@ -14,7 +14,14 @@ class ReviewForm
         return $schema
             ->components([
                 FileUpload::make('user_image')
-                    ->image(),
+                    ->required()
+                    ->image()
+                    ->disk('public')
+                    ->directory('user_image')
+                    ->maxSize(5000)
+                    ->imagePreviewHeight('250')
+                    ->downloadable()
+                    ->openable(),
                 TextInput::make('rating')
                     ->required()
                     ->numeric(),

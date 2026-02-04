@@ -14,8 +14,14 @@ class LatestNewsForm
         return $schema
             ->components([
                 FileUpload::make('image')
+                    ->required()
                     ->image()
-                    ->required(),
+                    ->disk('public')
+                    ->directory('photos')
+                    ->maxSize(5000)
+                    ->imagePreviewHeight('250')
+                    ->downloadable()
+                    ->openable(),
                 TextInput::make('title')
                     ->required(),
                 Textarea::make('content')

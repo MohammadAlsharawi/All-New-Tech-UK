@@ -3,9 +3,14 @@
 namespace App\Filament\Resources\Users\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Pages\Page;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
+
 
 class UserForm
 {
@@ -27,10 +32,20 @@ class UserForm
                     ->label('Email address')
                     ->email()
                     ->required(),
-                DateTimePicker::make('email_verified_at'),
+                Hidden::make('email_verified_at')
+                    ->default(fn (Page $livewire) =>
+                        $livewire instanceof EditRecord ? now() : null
+                    ),
+
+
                 TextInput::make('password')
+                    ->label('Password')
                     ->password()
-                    ->required(),
-            ]);
+                    ->minLength(6)
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (Page $livewire) => $livewire instanceof CreateRecord)
+                    ->dehydrateStateUsing(fn ($state) => bcrypt($state)),
+
+                            ]);
     }
 }

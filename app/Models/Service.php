@@ -10,12 +10,12 @@ class Service extends Model
         'image',
         'title',
         'description',
-        'points',
         'property_type_id',
+        'advantages'
     ];
 
     protected $casts = [
-        'points' => 'array',
+        'advantages' => 'array',
     ];
 
     public function propertyType()

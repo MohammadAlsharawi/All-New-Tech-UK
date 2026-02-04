@@ -18,6 +18,13 @@ class EditUser extends EditRecord
             DeleteAction::make(),
         ];
     }
+    protected function beforeSave(): void
+    {
+        if (! $this->record->email_verified_at) {
+            $this->record->email_verified_at = now();
+        }
+    }
+
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

@@ -12,9 +12,22 @@ class ReviewInfolist
     {
         return $schema
             ->components([
-                ImageEntry::make('user_image'),
+                ImageEntry::make('user_image')
+                    ->square()
+                    ->size(300)
+                    ->disk('public'),
                 TextEntry::make('rating')
-                    ->numeric(),
+                    ->label('Rating')
+                    ->formatStateUsing(function ($state) {
+                        $stars = '';
+                        for ($i = 1; $i <= 5; $i++) {
+                            $stars .= $i <= $state ? '⭐' : '☆';
+                        }
+                        return $stars;
+                    })
+                    ->html(),
+
+                TextEntry::make('description'),
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')
