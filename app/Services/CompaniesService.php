@@ -12,6 +12,7 @@ class CompaniesService
             return Company::all()->map(function ($update) {
                 return [
                     'id'          => $update->id,
+                    'name'        => $update->name,
                     'priority' => $update->priority,
                     'logo'  => Storage::disk('public')->url($update->logo),
                     'created_at'  => $update->created_at,
